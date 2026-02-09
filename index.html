@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hårtræt — Redesign Vorschläge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      color: #1C1C1C;
+      background: #F7F5F0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+    }
+    .logo { margin-bottom: 16px; opacity: 0.7; }
+    .logo svg { height: 28px; fill: #1C1C1C; }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .subtitle {
+      font-size: 0.9rem;
+      color: #6B6B6B;
+      margin-bottom: 56px;
+      text-align: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      max-width: 1100px;
+      width: 100%;
+    }
+    .card {
+      background: #FFFFFF;
+      border: 1px solid rgba(28,28,28,0.08);
+      padding: 32px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    }
+    .card-version {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #4A5A3C;
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .card-desc {
+      font-size: 0.85rem;
+      color: #6B6B6B;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .card-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid rgba(28,28,28,0.12);
+      color: #6B6B6B;
+    }
+    .card-cta {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #1C1C1C;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #1C1C1C;
+      padding-bottom: 4px;
+    }
+    .card-cta svg { width: 14px; height: 14px; transition: transform 0.3s ease; }
+    .card:hover .card-cta svg { transform: translateX(4px); }
+    .card-swatch {
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      display: flex;
+      gap: 6px;
+    }
+    .swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(28,28,28,0.1);
+    }
+    footer {
+      margin-top: 56px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #A0A0A0;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180.46 83.46"><path d="M25.93,46.54h-7.44v-.56c1.32-.44,1.6-1.64,1.6-4.52v-17.84c0-2.88-.28-4.08-1.6-4.52v-.56h7.44v.56c-1.32.44-1.6,1.64-1.6,4.52v7.72h13.92v-7.72c0-2.88-.28-4.08-1.6-4.52v-.56h7.44v.56c-1.32.44-1.6,1.64-1.6,4.52v17.84c0,2.88.28,4.08,1.6,4.52v.56h-7.44v-.56c1.32-.44,1.6-1.64,1.6-4.52v-9.4h-13.92v9.4c0,2.88.28,4.08,1.6,4.52v.56ZM59.91,38.58c-1,4.52-3.56,8.36-7.64,8.36-2.96,0-5.44-1.88-5.44-5.24,0-4.12,3.68-5.4,8.64-6.8l4.44-1.28v-.12c0-2.64.28-5.2-3.4-6.36-2.76,2.08-5.12,3.96-6.6,3.96-1,0-1.36-.76-1.36-1.52,0-2.84,2.16-3.24,5.6-3.24,3.72,0,9.76,2.2,9.76,7.4v7.72c0,2.88.28,4.08,1.6,4.52v.56h-4c-1.04,0-1.6-.56-1.6-1.6v-6.36ZM59.91,34.9v-.72l-4.28,1.24c-1.88.52-5.08,1.56-5.08,4.88,0,2.64,1.88,3.72,3.72,3.72,3.92,0,5.6-5.52,5.64-9.12ZM81.32,26.26c-1.92,0-3.44.52-4.92,1.56-1.28.88-2.32,2.12-2.92,3.52v-4.84l-.4-.32-5.28,2.32v.56c1,.44,1.6.84,1.6,3.2v9.2c0,2.88-.28,4.08-1.6,4.52v.56h7.28v-.56c-1.32-.44-1.6-1.64-1.6-4.52v-7.96c.12-2,1.48-3.8,2.48-4.64,2.56.8,4.08,1.2,5.2,1.2,1.84,0,2.72-1.72,2.72-2.6s-1.2-1.2-2.56-1.2ZM116.3,27.46c0-.84-1.2-1.2-2.56-1.2-1.92,0-3.44.52-4.92,1.56-1.28.88-2.32,2.12-2.92,3.52v-4.84l-.4-.32-5.28,2.32v.56c1,.44,1.6.84,1.6,3.2v9.2c0,2.88-.28,4.08-1.6,4.52v.56h7.28v-.56c-1.32-.44-1.6-1.64-1.6-4.52v-7.96c.12-2,1.48-3.8,2.48-4.64,2.56.8,4.08,1.2,5.2,1.2,1.84,0,2.72-1.72,2.72-2.6ZM151.24,30.93v9.96c0,4.32,1.44,6.04,4.16,6.04,2.4,0,4.44-1.6,6.56-4.04l-.4-.4c-1.32,1.64-2.68,2-3.56,2-1.76,0-2.68-1.08-2.68-3.56v-16.3h6.04l.16-.64h-6.2v-5.47h-.45l-6.19,5.47v.64h2.56v6.3ZM88.41,33.48v7.42c0,4.32,1.44,6.04,4.16,6.04,2.4,0,4.44-1.6,6.56-4.04l-.4-.4c-1.32,1.64-2.68,2-3.56,2-1.76,0-2.68-1.08-2.68-3.56v-16.3h6.04l.16-.64h-6.2v-5.47h-.45l-6.19,5.47v.64h2.56v8.85ZM53.43,22.5c-.12-1.03.43-1.82.6-2.07,1.08-1.56,3.93-2.62,5.29-1.34.99.92.95,2.83.13,4.03-1.29,1.87-4.4,1.9-5.47.71-.44-.49-.53-1.2-.55-1.33ZM55.22,21.76c.01.07.05.43.28.69.56.62,2.19.6,2.86-.37.43-.62.46-1.61-.06-2.09-.72-.67-2.2-.12-2.77.69-.09.13-.38.54-.31,1.08ZM147.42,40.54l.36.39c-1.84,2.8-5,6-9.64,6-1.25,0-2.54-.25-3.76-.77-2.73-1.11-5.07-3.5-5.6-7.21-.02-.13-.04-.27-.05-.41-1.03,4.42-3.58,8.12-7.59,8.12-2.96,0-5.44-1.88-5.44-5.24,0-4.12,3.68-5.4,8.64-6.8l4.44-1.28v-.12c0-2.64.28-5.2-3.4-6.36-2.76,2.08-5.12,3.96-6.6,3.96-1,0-1.36-.76-1.36-1.52,0-2.84,2.16-3.24,5.6-3.24,2.66,0,6.07,1.12,8.04,3.67,2.01-2.23,5.3-3.47,8.12-3.47,5.4,0,8.28,3.72,8.28,7.2h-15.16c-.04.44-.08.84-.08,1.28,0,1.28.19,2.47.56,3.53,1.12,3.3,3.88,5.42,7.72,5.42,2.96,0,5.24-1.28,6.92-3.15ZM132.34,32.9h11.08c-.52-3.28-2.72-5.88-5.48-5.92-3-.04-4.7,2.18-5.38,4.85h0c-.09.35-.16.71-.22,1.07ZM128.78,33.9l-4.28,1.24c-1.88.52-5.08,1.56-5.08,4.88,0,2.64,1.88,3.72,3.72,3.72,3.92,0,5.6-5.52,5.64-9.12v-.72ZM24.61,64.77c-3.15,0-4.87-2.72-4.86-5.57,0-3.09,1.86-4.69,4.27-4.69,1.8,0,3.24.92,3.83,2.3l.15-.03-.06-1.8c-.59-.38-2.1-.76-3.41-.76-3.56,0-6.05,2.39-6.05,5.62s2.23,5.24,5.71,5.24c1.7,0,3.13-.42,3.84-.82l.24-1.97h-.17c-.59,1.62-1.86,2.48-3.5,2.48ZM37.17,63v-3.12c0-1.77-.91-2.63-2.39-2.63-1.17,0-2.33.68-3.21,1.39v-5.84l-.14-.11-1.65.73v.17c.41.18.61.33.61,1.39v8.02c0,1.24-.14,1.59-.61,1.72v.2h2.39v-.2c-.47-.14-.61-.48-.61-1.72v-4.12c.77-.64,1.59-1.14,2.42-1.14,1.33,0,2,.86,2,2.44v2.82c0,1.24-.14,1.59-.61,1.72v.2h2.39v-.2c-.47-.14-.61-.48-.61-1.72ZM43.92,57.25c-.73,0-1.26.2-1.73.54-.45.33-.86.85-1.1,1.44v-1.89l-.14-.11-1.65.73v.17c.41.18.61.33.61,1.39v3.48c0,1.24-.14,1.59-.61,1.72v.2h2.39v-.2c-.47-.14-.61-.48-.61-1.72v-3.01h.02c.05-.73.59-1.57,1.03-1.89.89.26,1.48.42,1.89.42.54,0,.88-.53.88-.86,0-.26-.38-.41-.98-.41ZM48.32,55.47c0-.48-.35-.85-.83-.85s-.83.36-.83.85c0,.45.36.83.83.83s.83-.38.83-.83ZM48.17,63v-5.66l-.12-.11-1.67.73v.17c.42.18.61.33.61,1.39v3.48c0,1.24-.14,1.59-.61,1.72v.2h2.39v-.2c-.45-.14-.61-.48-.61-1.72ZM53.52,60.46c-1.2-.39-2.16-.79-2.16-1.74,0-.77.67-1.27,1.7-1.27s2.04.7,2.53,1.79l.15-.03-.06-1.54c-.47-.2-1.36-.41-2.35-.41-1.76,0-2.75.92-2.75,2.12,0,1.38,1.03,1.77,2.47,2.22,1.17.38,2.23.73,2.23,1.82,0,.85-.7,1.41-1.63,1.41-1.38-.02-2.45-.88-3.09-2.32l-.14.03.14,1.83c.5.33,1.54.7,2.75.7,1.82-.02,2.77-1.09,2.77-2.36,0-1.51-1.39-1.86-2.54-2.24ZM60.66,64.33c-.65,0-1.07-.39-1.07-1.42v-5.34h2.23l.08-.21h-2.3v-1.86h-.21l-1.94,1.86v.21h.97v5.34c0,1.57.58,2.17,1.53,2.17.89,0,1.67-.65,2.32-1.39l-.14-.14c-.5.59-1.03.79-1.45.79ZM65.11,63v-5.66l-.12-.11-1.67.73v.17c.42.18.61.33.61,1.39v3.48c0,1.24-.14,1.59-.61,1.72v.2h2.39v-.2c-.45-.14-.61-.48-.61-1.72ZM63.6,55.47c0,.45.36.83.83.83s.83-.38.83-.83c0-.48-.35-.85-.83-.85s-.83.36-.83.85ZM74.27,64.72v.2h-1.32c-.3,0-.45-.17-.45-.45v-2.72c-.47,1.86-1.74,3.33-3.24,3.33-1.12,0-2.12-.68-2.12-1.98,0-1.57,1.59-2.16,3.39-2.66l1.97-.53c-.08-1.47-.83-2.15-2.12-2.15-.91,0-1.79.42-2.54,1.35l-.14-.12c.86-1.07,1.97-1.72,3.28-1.72,1.83,0,2.68,1.01,2.68,2.72v3.03c0,1.24.14,1.59.61,1.72ZM72.5,60.09l-1.91.51c-1.12.32-2.33.82-2.32,2.06,0,.98.68,1.51,1.54,1.51,1.62,0,2.66-2.04,2.68-3.63v-.45ZM83.19,63v-3.12c0-1.77-.91-2.63-2.39-2.63-1.17,0-2.33.68-3.21,1.39v-1.3l-.12-.11-1.67.73v.17c.42.18.61.33.61,1.39v3.48c0,1.24-.14,1.59-.61,1.72v.2h2.39v-.2c-.45-.14-.61-.48-.61-1.72v-4.12c.77-.64,1.59-1.14,2.42-1.14,1.33,0,2,.86,2,2.44v2.82c0,1.24-.14,1.59-.61,1.72v.2h2.39v-.2c-.47-.14-.61-.48-.61-1.72ZM96.57,61.44c.03,1.7-1.24,3.48-4.92,3.48h-3.09v-.2c.45-.14.61-.48.61-1.72v-6.75c0-1.24-.15-1.59-.61-1.73v-.2h3.54c2.33,0,3.28.77,3.28,2,0,1.03-.67,1.97-2.39,2.29,2.47.12,3.56,1.35,3.57,2.83ZM90.41,58.58h1.41c1.5,0,2.19-.88,2.19-1.98,0-1.26-.89-2.04-2.45-2.04h-1.15v4.03ZM95.19,61.82c0-1.74-.97-3.01-3.24-3.01h-1.54v4.57c0,1.09.14,1.32.79,1.32h.59c2.47,0,3.41-1.2,3.41-2.88ZM105.31,62.8l.14.14c-.77,1.06-1.95,2.13-3.57,2.13s-3.59-1.21-3.59-3.71,1.86-4.12,3.98-4.12c1.91,0,3.01,1.24,3.06,2.68h-5.92c-.03.23-.05.45-.05.7,0,2.07,1.29,3.5,3.25,3.5,1.17,0,2-.53,2.69-1.32ZM99.45,59.73h4.66c-.15-1.01-.97-2.21-2.35-2.21-1.29-.01-2.07.94-2.32,2.21ZM111.51,57.25c-.73,0-1.26.2-1.73.54-.45.33-.86.85-1.1,1.44v-1.89l-.14-.11-1.65.73v.17c.41.18.61.33.61,1.39v3.48c0,1.24-.14,1.59-.61,1.72v.2h2.39v-.2c-.47-.14-.61-.48-.61-1.72v-3.01h.02c.05-.73.59-1.57,1.03-1.89.89.26,1.48.42,1.89.42.54,0,.88-.53.88-.86,0-.26-.38-.41-.98-.41ZM121.36,63v-3.12c0-1.77-.91-2.63-2.39-2.63-1.17,0-2.33.68-3.21,1.39v-1.3l-.12-.11-1.67.73v.17c.42.18.61.33.61,1.39v3.48c0,1.24-.14,1.59-.61,1.72v.2h2.39v-.2c-.45-.14-.61-.48-.61-1.72v-4.12c.77-.64,1.59-1.14,2.42-1.14,1.33,0,2,.86,2,2.44v2.82c0,1.24-.14,1.59-.61,1.72v.2h2.39v-.2c-.47-.14-.61-.48-.61-1.72ZM130.85,63v-3.12c0-1.77-.91-2.63-2.39-2.63-1.17,0-2.33.68-3.21,1.39v-5.84l-.14-.11-1.65.73v.17c.41.18.61.33.61,1.39v8.02c0,1.24-.14,1.59-.61,1.72v.2h2.39v-.2c-.47-.14-.61-.48-.61-1.72v-4.12c.77-.64,1.59-1.14,2.42-1.14,1.33,0,2,.86,2,2.44v2.82c0,1.24-.14,1.59-.61,1.72v.2h2.39v-.2c-.47-.14-.61-.48-.61-1.72ZM139.89,64.72v.2h-1.32c-.3,0-.45-.17-.45-.45v-2.72c-.47,1.86-1.74,3.33-3.24,3.33-1.12,0-2.12-.68-2.12-1.98,0-1.57,1.59-2.16,3.39-2.66l1.97-.53c-.08-1.47-.83-2.15-2.12-2.15-.91,0-1.79.42-2.54,1.35l-.14-.12c.86-1.07,1.97-1.72,3.28-1.72,1.83,0,2.68,1.01,2.68,2.72v3.03c0,1.24.14,1.59.61,1.72ZM138.12,60.09l-1.91.51c-1.12.32-2.33.82-2.32,2.06,0,.98.68,1.51,1.54,1.51,1.62,0,2.66-2.04,2.68-3.63v-.45ZM146.04,57.25c-.73,0-1.26.2-1.73.54-.45.33-.86.85-1.1,1.44v-1.89l-.14-.11-1.65.73v.17c.41.18.61.33.61,1.39v3.48c0,1.24-.14,1.59-.61,1.72v.2h2.39v-.2c-.47-.14-.61-.48-.61-1.72v-3.01h.02c.05-.73.59-1.57,1.03-1.89.89.26,1.48.42,1.89.42.54,0,.88-.53.88-.86,0-.26-.38-.41-.98-.41ZM155.79,64.72v.2h-1.33c-.29,0-.45-.17-.45-.45v-.86c-.74.77-1.68,1.5-2.75,1.48-1.88-.01-3.35-1.63-3.35-3.77s1.44-4.04,4.04-4.06c.83,0,1.53.26,2.06.59v-2.88c0-1.06-.2-1.21-.61-1.39v-.17l1.67-.73.12.11v10.2c0,1.24.14,1.59.61,1.72ZM154,59.62c-.14-.98-1.26-2.07-2.53-2.07-1.6,0-2.44,1.26-2.44,2.86,0,1.77.83,3.94,2.89,3.94.79,0,1.48-.41,2.07-1.01v-3.71ZM160.19,64.33c-.65,0-1.07-.39-1.07-1.42v-5.34h2.23l.08-.21h-2.3v-1.86h-.21l-1.94,1.86v.21h.97v5.34c0,1.57.58,2.17,1.53,2.17.89,0,1.67-.65,2.32-1.39l-.14-.14c-.5.59-1.03.79-1.45.79Z"/></svg>
+  </div>
+  <h1>Redesign Vorschläge</h1>
+  <p class="subtitle">Drei Designkonzepte für hartraet.de — klicken Sie zum Vergleich</p>
+
+  <div class="grid">
+    <a href="v1/" class="card">
+      <div class="card-swatch">
+        <div class="swatch" style="background:#FAF8F5"></div>
+        <div class="swatch" style="background:#C5A880"></div>
+        <div class="swatch" style="background:#1A1A1A"></div>
+      </div>
+      <div class="card-version">Version 01</div>
+      <div class="card-title">Klassische Eleganz</div>
+      <p class="card-desc">Warme Cremetöne mit Gold-Akzenten. Zeitloser Luxus mit klassischen Ornamenten und einer ruhigen, einladenden Atmosphäre.</p>
+      <div class="card-details">
+        <span class="tag">Cream &amp; Gold</span>
+        <span class="tag">Cormorant Garamond</span>
+        <span class="tag">Light Theme</span>
+      </div>
+      <span class="card-cta">
+        Ansehen
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a href="v2/" class="card">
+      <div class="card-swatch">
+        <div class="swatch" style="background:#0A0A0A"></div>
+        <div class="swatch" style="background:#C9A96E"></div>
+        <div class="swatch" style="background:#F0EBE3"></div>
+      </div>
+      <div class="card-version">Version 02</div>
+      <div class="card-title">Moderne Luxe</div>
+      <p class="card-desc">Dunkles, zeitgenössisches Design mit Messing-Akzenten. Art-Deco-Einflüsse, Medaillon-Rahmen und asymmetrische Layouts.</p>
+      <div class="card-details">
+        <span class="tag">Dark &amp; Brass</span>
+        <span class="tag">Cinzel</span>
+        <span class="tag">Dark Theme</span>
+      </div>
+      <span class="card-cta">
+        Ansehen
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <a href="v3/" class="card">
+      <div class="card-swatch">
+        <div class="swatch" style="background:#F7F5F0"></div>
+        <div class="swatch" style="background:#4A5A3C"></div>
+        <div class="swatch" style="background:#C4A08A"></div>
+      </div>
+      <div class="card-version">Version 03</div>
+      <div class="card-title">Stuck-Art Eleganz</div>
+      <p class="card-desc">Europäische Palast-Ästhetik trifft Editorial-Design. Weiße Stuck-Rahmen, Bogenformen, Salbeigrün-Akzente und Magazin-Layouts.</p>
+      <div class="card-details">
+        <span class="tag">Alabaster &amp; Sage</span>
+        <span class="tag">Playfair Display</span>
+        <span class="tag">Stucco Art</span>
+      </div>
+      <span class="card-cta">
+        Ansehen
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+  </div>
+
+  <footer>© 2026 Hårtræt — Redesign Vorschläge</footer>
+</body>
+</html>

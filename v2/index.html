@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hårtræt – dein Shop für Haarpflege &amp; Haarstyling</title>
+  <meta name="description" content="Dein Haar, deine Handschrift. Hårtræt steht für klare Pflege ohne Kompromisse aus Deutschland.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       CSS Custom Properties
+       ======================================== */
+    :root {
+      --bg: #0A0A0A;
+      --ivory: #F0EBE3;
+      --brass: #C9A96E;
+      --brass-dim: rgba(201, 169, 110, 0.35);
+      --brass-glow: rgba(201, 169, 110, 0.12);
+      --panel: #141414;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'DM Sans', sans-serif;
+      --section-pad: clamp(72px, 10vw, 140px);
+      --container: 1240px;
+      --gutter: clamp(20px, 5vw, 48px);
+      --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ========================================
+       Reset & Base
+       ======================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--ivory);
+      background: var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: var(--brass);
+      color: var(--bg);
+    }
+
+    ::-moz-selection {
+      background: var(--brass);
+      color: var(--bg);
+    }
+
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ========================================
+       Noise Overlay
+       ======================================== */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* ========================================
+       Reveal Animation System
+       ======================================== */
+    .reveal {
+      clip-path: inset(8% 8%);
+      filter: blur(2px);
+      transform: rotate(-1deg);
+      opacity: 0;
+      transition: all 0.8s var(--ease-out);
+    }
+
+    .reveal.revealed {
+      clip-path: inset(0);
+      filter: blur(0);
+      transform: rotate(0);
+      opacity: 1;
+    }
+
+    .reveal-d1 { transition-delay: 0.12s; }
+    .reveal-d2 { transition-delay: 0.24s; }
+    .reveal-d3 { transition-delay: 0.36s; }
+    .reveal-d4 { transition-delay: 0.48s; }
+
+    /* ========================================
+       SVG Corner Ornaments
+       ======================================== */
+    .orn-corner {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .orn-corner svg { width: 100%; height: 100%; }
+    .orn-tl { top: 0; left: 0; }
+    .orn-tr { top: 0; right: 0; transform: scaleX(-1); }
+    .orn-bl { bottom: 0; left: 0; transform: scaleY(-1); }
+    .orn-br { bottom: 0; right: 0; transform: scale(-1, -1); }
+
+    /* ========================================
+       Flourish Divider
+       ======================================== */
+    .flourish {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 0;
+      overflow: hidden;
+    }
+
+    .flourish svg {
+      width: clamp(260px, 50vw, 480px);
+      height: auto;
+      opacity: 0.5;
+    }
+
+    /* ========================================
+       Navigation / Header
+       ======================================== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 20px var(--gutter);
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    header.scrolled {
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 var(--brass-dim);
+    }
+
+    .header-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-logo svg {
+      height: 32px;
+      width: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 36px;
+    }
+
+    nav a {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ivory);
+      opacity: 0.7;
+      transition: opacity 0.3s ease, color 0.3s ease;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--brass);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover { opacity: 1; color: var(--brass); }
+    nav a:hover::after { width: 100%; }
+
+    /* ========================================
+       HERO
+       ======================================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/hero-desktop.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      background-attachment: fixed;
+      opacity: 0.18;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, transparent 30%, var(--bg) 75%);
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 2;
+      padding: clamp(100px, 12vh, 160px) var(--gutter) clamp(60px, 8vh, 120px) var(--gutter);
+      display: flex;
+      justify-content: flex-end;
+      padding-right: clamp(32px, 4vw, 80px);
+    }
+
+    .cartouche {
+      position: relative;
+      padding: clamp(40px, 5vw, 72px) clamp(32px, 4vw, 60px);
+      max-width: 540px;
+    }
+
+    .cartouche-border {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .cartouche-border svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--brass);
+      opacity: 0.85;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.8vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--ivory);
+      margin-bottom: 28px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-heading);
+      font-size: clamp(1rem, 1.5vw, 1.35rem);
+      font-weight: 400;
+      color: var(--brass);
+      font-style: italic;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(40px, 5vh, 80px) var(--gutter);
+    }
+
+    .medallion {
+      position: relative;
+      width: clamp(280px, 30vw, 440px);
+      height: clamp(280px, 30vw, 440px);
+    }
+
+    .medallion-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 30%;
+      border: 2px solid var(--brass-dim);
+      box-shadow: 0 0 0 8px var(--bg), 0 0 0 10px var(--brass-dim), 0 0 80px rgba(201,169,110,0.08);
+    }
+
+    .medallion::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      border: 1px solid var(--brass-dim);
+      opacity: 0.5;
+    }
+
+    .medallion::after {
+      content: '';
+      position: absolute;
+      inset: -36px;
+      border-radius: 50%;
+      border: 1px dashed var(--brass-dim);
+      opacity: 0.3;
+    }
+
+    /* ========================================
+       PHILOSOPHIE / VALUES
+       ======================================== */
+    .values {
+      position: relative;
+      padding: var(--section-pad) 0;
+      background: var(--panel);
+    }
+
+    .values-header {
+      text-align: center;
+      margin-bottom: clamp(48px, 6vw, 80px);
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--brass);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.75rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      color: var(--ivory);
+      letter-spacing: 0.06em;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(24px, 3vw, 48px);
+      text-align: center;
+    }
+
+    .value-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: clamp(24px, 3vw, 40px) clamp(16px, 2vw, 32px);
+    }
+
+    .value-medallion {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .value-medallion svg.value-icon {
+      width: 36px;
+      height: 36px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .value-medallion::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid var(--brass);
+      opacity: 0.4;
+    }
+
+    .value-medallion::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid var(--brass);
+      opacity: 0.15;
+    }
+
+    .value-name {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 12px;
+    }
+
+    .value-desc {
+      font-size: 0.95rem;
+      color: var(--ivory);
+      opacity: 0.7;
+      line-height: 1.65;
+      max-width: 260px;
+    }
+
+    /* ========================================
+       PRODUKTE — Asymmetric 12-column Grid
+       ======================================== */
+    .products {
+      position: relative;
+      padding: var(--section-pad) 0;
+      background: var(--bg);
+    }
+
+    .products-header {
+      text-align: center;
+      margin-bottom: clamp(48px, 6vw, 80px);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .p1 { grid-column: 1 / span 7; }
+    .p2 { grid-column: 8 / span 5; margin-top: 24px; }
+    .p3 { grid-column: 2 / span 5; margin-top: 0; }
+    .p4 { grid-column: 7 / span 6; margin-top: 12px; }
+
+    .product-card {
+      position: relative;
+      display: block;
+      color: inherit;
+    }
+
+    .product-card:hover .product-img { transform: scale(1.03); }
+    .product-card:hover .product-frame::after { border-color: var(--brass); opacity: 0.6; }
+
+    .product-frame {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: var(--panel);
+    }
+
+    .product-frame::after {
+      content: '';
+      position: absolute;
+      inset: 10px;
+      border: 1px solid var(--brass-dim);
+      box-shadow: inset 0 0 0 1px rgba(201,169,110,0.06), inset 0 0 20px rgba(0,0,0,0.3);
+      pointer-events: none;
+      z-index: 3;
+      transition: all 0.5s ease;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s var(--ease-out);
+    }
+
+    .product-info { padding: 18px 4px 0; }
+
+    .product-name {
+      font-family: var(--font-heading);
+      font-size: clamp(1rem, 1.3vw, 1.2rem);
+      font-weight: 400;
+      color: var(--ivory);
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    .product-price {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--brass);
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .product-desc {
+      font-size: 0.8rem;
+      color: var(--ivory);
+      opacity: 0.45;
+      line-height: 1.6;
+    }
+
+    /* ========================================
+       RITUAL / Brand Story
+       ======================================== */
+    .ritual {
+      position: relative;
+      padding: var(--section-pad) 0;
+      background: var(--panel);
+      overflow: hidden;
+    }
+
+    .ritual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L100 50 L50 100 L0 50Z' fill='none' stroke='%23C9A96E' stroke-width='0.3'/%3E%3C/svg%3E");
+      background-size: 100px 100px;
+    }
+
+    .ritual-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .ritual-cartouche {
+      position: relative;
+      padding: clamp(48px, 6vw, 80px) clamp(28px, 4vw, 60px);
+    }
+
+    .ritual-cartouche-frame {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .ritual-cartouche-frame svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .ritual-quote {
+      font-family: var(--font-heading);
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--ivory);
+      margin-bottom: 40px;
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+
+    .ritual-founder { margin-bottom: 32px; }
+
+    .ritual-founder-name {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--brass);
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .ritual-founder-role {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ivory);
+      opacity: 0.5;
+    }
+
+    .ritual-bio {
+      font-size: 0.875rem;
+      line-height: 1.75;
+      color: var(--ivory);
+      opacity: 0.5;
+      max-width: 620px;
+      margin: 0 auto 40px;
+      text-align: left;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brass);
+      padding: 14px 36px;
+      border: 1px solid var(--brass-dim);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--brass);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+      z-index: -1;
+    }
+
+    .cta-btn:hover { color: var(--bg); border-color: var(--brass); }
+    .cta-btn:hover::before { transform: scaleX(1); }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    footer {
+      background: var(--bg);
+      padding: 60px 0 40px;
+      position: relative;
+      border-top: 1px solid rgba(201,169,110,0.15);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .footer-logo svg { height: 28px; width: auto; opacity: 0.6; }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 28px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--ivory);
+      opacity: 0.55;
+      padding: 8px 4px;
+      transition: opacity 0.3s ease, color 0.3s ease;
+    }
+
+    .footer-links a:hover { opacity: 0.9; color: var(--brass); }
+
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--brass-dim);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover { border-color: var(--brass); background: var(--brass-glow); }
+
+    .footer-social svg { width: 15px; height: 15px; fill: var(--ivory); opacity: 0.5; }
+    .footer-social a:hover svg { opacity: 1; fill: var(--brass); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--ivory);
+      opacity: 0.4;
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { justify-content: center; padding: clamp(120px, 15vh, 180px) var(--gutter) 40px; }
+      .hero-right { padding: 0 var(--gutter) clamp(60px, 8vh, 100px); }
+      .medallion { width: clamp(220px, 40vw, 320px); height: clamp(220px, 40vw, 320px); }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .p1, .p2, .p3, .p4 { grid-column: auto; margin-top: 0; }
+    }
+
+    @media (max-width: 768px) {
+      .values-grid { grid-template-columns: 1fr; gap: 40px; }
+      nav ul { gap: 20px; }
+      nav a { font-size: 0.75rem; }
+      .orn-corner { width: 36px; height: 36px; }
+      .hero-bg { background-attachment: scroll; }
+      .ritual-bio { text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+      nav ul { gap: 14px; }
+      .footer-links { flex-direction: column; align-items: center; gap: 10px; }
+      .medallion::before, .medallion::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ HEADER / NAV ============ -->
+  <header id="siteHeader">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Hårtræt">
+        <svg viewBox="0 0 180.46 83.46" xmlns="http://www.w3.org/2000/svg" fill="#F0EBE3">
+          <path d="M25.93,46.54h-7.44v-.56c1.32-.44,1.6-1.64,1.6-4.52v-17.84c0-2.88-.28-4.08-1.6-4.52v-.56h7.44v.56c-1.32.44-1.6,1.64-1.6,4.52v7.72h13.92v-7.72c0-2.88-.28-4.08-1.6-4.52v-.56h7.44v.56c-1.32.44-1.6,1.64-1.6,4.52v17.84c0,2.88.28,4.08,1.6,4.52v.56h-7.44v-.56c1.32-.44,1.6-1.64,1.6-4.52v-9.4h-13.92v9.4c0,2.88.28,4.08,1.6,4.52v.56ZM59.91,38.58c-1,4.52-3.56,8.36-7.64,8.36-2.96,0-5.44-1.88-5.44-5.24,0-4.12,3.68-5.4,8.64-6.8l4.44-1.28v-.12c0-2.64.28-5.2-3.4-6.36-2.76,2.08-5.12,3.96-6.6,3.96-1,0-1.36-.76-1.36-1.52,0-2.84,2.16-3.24,5.6-3.24,3.72,0,9.76,2.2,9.76,7.4v7.72c0,2.88.28,4.08,1.6,4.52v.56h-4c-1.04,0-1.6-.56-1.6-1.6v-6.36ZM59.91,34.9v-.72l-4.28,1.24c-1.88.52-5.08,1.56-5.08,4.88,0,2.64,1.88,3.72,3.72,3.72,3.92,0,5.6-5.52,5.64-9.12ZM81.32,26.26c-1.92,0-3.44.52-4.92,1.56-1.28.88-2.32,2.12-2.92,3.52v-4.84l-.4-.32-5.28,2.32v.56c1,.44,1.6.84,1.6,3.2v9.2c0,2.88-.28,4.08-1.6,4.52v.56h7.28v-.56c-1.32-.44-1.6-1.64-1.6-4.52v-7.96c.12-2,1.48-3.8,2.48-4.64,2.56.8,4.08,1.2,5.2,1.2,1.84,0,2.72-1.72,2.72-2.6s-1.2-1.2-2.56-1.2ZM116.3,27.46c0-.84-1.2-1.2-2.56-1.2-1.92,0-3.44.52-4.92,1.56-1.28.88-2.32,2.12-2.92,3.52v-4.84l-.4-.32-5.28,2.32v.56c1,.44,1.6.84,1.6,3.2v9.2c0,2.88-.28,4.08-1.6,4.52v.56h7.28v-.56c-1.32-.44-1.6-1.64-1.6-4.52v-7.96c.12-2,1.48-3.8,2.48-4.64,2.56.8,4.08,1.2,5.2,1.2,1.84,0,2.72-1.72,2.72-2.6ZM151.24,30.93v9.96c0,4.32,1.44,6.04,4.16,6.04,2.4,0,4.44-1.6,6.56-4.04l-.4-.4c-1.32,1.64-2.68,2-3.56,2-1.76,0-2.68-1.08-2.68-3.56v-16.3h6.04l.16-.64h-6.2v-5.47h-.45l-6.19,5.47v.64h2.56v6.3ZM88.41,33.48v7.42c0,4.32,1.44,6.04,4.16,6.04,2.4,0,4.44-1.6,6.56-4.04l-.4-.4c-1.32,1.64-2.68,2-3.56,2-1.76,0-2.68-1.08-2.68-3.56v-16.3h6.04l.16-.64h-6.2v-5.47h-.45l-6.19,5.47v.64h2.56v8.85ZM53.43,22.5c-.12-1.03.43-1.82.6-2.07,1.08-1.56,3.93-2.62,5.29-1.34.99.92.95,2.83.13,4.03-1.29,1.87-4.4,1.9-5.47.71-.44-.49-.53-1.2-.55-1.33ZM55.22,21.76c.01.07.05.43.28.69.56.62,2.19.6,2.86-.37.43-.62.46-1.61-.06-2.09-.72-.67-2.2-.12-2.77.69-.09.13-.38.54-.31,1.08ZM147.91,38.58c-1,4.52-3.56,8.36-7.64,8.36-2.96,0-5.44-1.88-5.44-5.24,0-4.12,3.68-5.4,8.64-6.8l4.44-1.28v-.12c0-2.64.28-5.2-3.4-6.36-2.76,2.08-5.12,3.96-6.6,3.96-1,0-1.36-.76-1.36-1.52,0-2.84,2.16-3.24,5.6-3.24,3.72,0,9.76,2.2,9.76,7.4v7.72c0,2.88.28,4.08,1.6,4.52v.56h-4c-1.04,0-1.6-.56-1.6-1.6v-6.36ZM147.91,34.9v-.72l-4.28,1.24c-1.88.52-5.08,1.56-5.08,4.88,0,2.64,1.88,3.72,3.72,3.72,3.92,0,5.6-5.52,5.64-9.12ZM121.85,38.2c2.2,4,5.12,6.12,8.12,6.12.8,0,1.48-.12,2.08-.36l.72-2.2c-.56.24-1.24.36-2.04.36-2.32,0-4.92-1.92-6.72-5.48l-1.44-2.84,7.32-7.56.16-.24h-5.44l-5.16,5.8v-13.36l-.4-.32-5.28,2.32v.56c1,.44,1.6.84,1.6,3.2v17.04c0,2.88-.28,4.08-1.6,4.52v.56h7.28v-.56c-1.32-.44-1.6-1.64-1.6-4.52v-7.12l1.4,3.08ZM8.63,75.21v-8.62h-.47l-3.2,2.64v.47l2.14-1.62v7.14c0,1.87-.18,2.65-1.04,2.94v.36h4.84v-.36c-.85-.29-1.04-1.07-1.04-2.94l-.24,0ZM19.7,76.15v-.47c-.86,1.06-1.74,1.3-2.31,1.3-1.14,0-1.74-.7-1.74-2.31v-4.07c0-1.53-.93-3.92-4.71-3.92-2.24,0-3.64.26-3.64,2.1,0,.49.24.99.89.99,1.14,0,2.49-1.22,4.29-2.57,2.39.75,2.21,2.42,2.21,4.13v.08l-2.88.83c-3.22.91-5.61,1.74-5.61,4.41,0,2.18,1.61,3.4,3.54,3.4,2.65,0,4.31-2.51,4.96-5.43,0,.67,0,1.38.02,1.95.06,2.31.86,3.49,2.81,3.49,1.56,0,2.88-1.04,4.26-2.62l-.26-.26c-.86,1.07-1.74,1.3-2.31,1.3-1.14,0-1.74-.7-1.74-2.31ZM16.94,73.68v-.47l-2.78.8c-1.22.34-3.3,1.01-3.3,3.17,0,1.71,1.22,2.42,2.42,2.42,2.55,0,3.64-3.58,3.66-5.92ZM29.82,70.65c-.83.57-1.51,1.38-1.9,2.29v-3.14l-.26-.21-3.43,1.51v.36c.65.29,1.04.55,1.04,2.08v5.97c0,1.87-.18,2.65-1.04,2.94v.36h4.73v-.36c-.86-.29-1.04-1.07-1.04-2.94v-5.17c.08-1.3.96-2.47,1.61-3.01,1.66.52,2.65.78,3.38.78,1.2,0,1.77-1.12,1.77-1.69s-.78-.78-1.66-.78c-1.25,0-2.24.34-3.2,1.01ZM44.48,75.32v-.47c-.86,1.06-1.74,1.3-2.31,1.3-1.14,0-1.74-.7-1.74-2.31v-5.17h3.92l.1-.42h-4.03v-3.55h-.29l-4.02,3.55v.42h1.66v6.47c0,2.81.93,3.92,2.7,3.92,1.56,0,2.88-1.04,4.26-2.62l-.26-.26c0-.31,0-.55,0-.86ZM54.32,75.32v-.47c-.86,1.06-1.74,1.3-2.31,1.3-1.14,0-1.74-.7-1.74-2.31v-5.17h3.92l.1-.42h-4.03v-3.55h-.29l-4.02,3.55v.42h1.66v6.47c0,2.81.93,3.92,2.7,3.92,1.56,0,2.88-1.04,4.26-2.62l-.26-.26c0-.31,0-.55,0-.86ZM163.9,70.08c-1.25,0-2.24.34-3.2,1.01-.83.57-1.51,1.38-1.9,2.29v-3.14l-.26-.21-3.43,1.51v.36c.65.29,1.04.55,1.04,2.08v5.97c0,1.87-.18,2.65-1.04,2.94v.36h4.73v-.36c-.86-.29-1.04-1.07-1.04-2.94v-5.17c.08-1.3.96-2.47,1.61-3.01,1.66.52,2.65.78,3.38.78,1.2,0,1.77-1.12,1.77-1.69s-.78-.78-1.66-.78ZM64.51,79.81c-.86-.29-1.04-1.07-1.04-2.94v-5.17c.08-1.3.96-2.47,1.61-3.01,1.66.52,2.65.78,3.38.78,1.2,0,1.77-1.12,1.77-1.69s-.78-.78-1.66-.78c-1.25,0-2.24.34-3.2,1.01-.83.57-1.51,1.38-1.9,2.29v-3.14l-.26-.21-3.43,1.51v.36c.65.29,1.04.55,1.04,2.08v5.97c0,1.87-.18,2.65-1.04,2.94v.36h4.73v-.36ZM78.26,76.15c-1.17,2.61-2.93,4.01-4.96,4.01-2.68,0-3.72-2.42-3.85-5.38h9.09c.32-3.63-2.1-6.37-5.45-6.37-3.38,0-6.34,2.91-6.34,6.97s2.57,5.69,5.4,5.69c3.17,0,5.4-2.26,6.19-4.97l-.08.05ZM73.12,69.12c2.39,0,3.41,2.26,3.41,4.34l-6.04.65c.13-2.83,1.09-4.99,2.63-4.99ZM85.44,76.15v-.47c-.86,1.06-1.74,1.3-2.31,1.3-1.14,0-1.74-.7-1.74-2.31v-5.17h3.92l.1-.42h-4.03v-3.55h-.29l-4.02,3.55v.42h1.66v6.47c0,2.81.93,3.92,2.7,3.92,1.56,0,2.88-1.04,4.26-2.62l-.26-.26c0-.31,0-.55,0-.86ZM97.73,72.73c0-2.91-1.72-4.73-4.81-4.73-2.03,0-3.41.41-3.41,1.49,0,.34.16.65.55.65,1.04,0,1.87-.7,3.22-1.69,1.87.47,2.86,1.46,2.86,3.51v.62l-3.04.88c-3.22.91-5.61,1.74-5.61,4.41,0,2.18,1.61,3.4,3.54,3.4,2.65,0,4.31-2.51,4.96-5.43.03,1.98.6,5.43,4.45,5.43.52,0,.96-.08,1.35-.24l.47-1.43c-.36.16-.81.24-1.33.24-1.14,0-1.74-.7-1.74-2.31v-4.81h1.54ZM96.15,73.68v-.47l-2.78.8c-1.22.34-3.3,1.01-3.3,3.17,0,1.71,1.22,2.42,2.42,2.42,2.55,0,3.64-3.58,3.66-5.92ZM101.91,75.72c0,3.25,2.39,5.35,5.4,5.35,2.31,0,4.34-1.14,5.35-3.17l-.36-.16c-1.04,1.38-2.34,1.93-3.67,1.93-2.78,0-4.45-2.21-4.45-5.4,0-3.64,1.93-5.53,4.16-5.53,1.87,0,3.27,1.12,3.77,3.2l.36-.13-.7-3.67c-.78-.24-1.82-.47-3.43-.47-3.38,0-6.42,3.12-6.42,7.87l0,.18ZM121.49,79.81c-.86-.29-1.04-1.07-1.04-2.94v-11.3l-.26-.21-3.43,1.51v.36c.65.29,1.04.55,1.04,2.08v7.56c0,1.87-.18,2.65-1.04,2.94v.36h4.73v-.36ZM122.01,63.87c0-.75-.57-1.38-1.33-1.38s-1.33.63-1.33,1.38.57,1.38,1.33,1.38,1.33-.62,1.33-1.38ZM131.97,76.15c-1.17,2.61-2.93,4.01-4.96,4.01-2.68,0-3.72-2.42-3.85-5.38h9.09c.32-3.63-2.1-6.37-5.45-6.37-3.38,0-6.34,2.91-6.34,6.97s2.57,5.69,5.4,5.69,5.4-2.26,6.19-4.97l-.08.05ZM126.83,69.12c2.39,0,3.41,2.26,3.41,4.34l-6.04.65c.13-2.83,1.09-4.99,2.63-4.99ZM143.87,70.65c-.83.57-1.51,1.38-1.9,2.29v-3.14l-.26-.21-3.43,1.51v.36c.65.29,1.04.55,1.04,2.08v5.97c0,1.87-.18,2.65-1.04,2.94v.36h4.73v-.36c-.86-.29-1.04-1.07-1.04-2.94v-5.17c.08-1.3.96-2.47,1.61-3.01,1.66.52,2.65.78,3.38.78,1.2,0,1.77-1.12,1.77-1.69s-.78-.78-1.66-.78c-1.25,0-2.24.34-3.2,1.01ZM175.96,76.15c-1.17,2.61-2.93,4.01-4.96,4.01-2.68,0-3.72-2.42-3.85-5.38h9.09c.32-3.63-2.1-6.37-5.45-6.37-3.38,0-6.34,2.91-6.34,6.97s2.57,5.69,5.4,5.69,5.4-2.26,6.19-4.97l-.08.05ZM170.82,69.12c2.39,0,3.41,2.26,3.41,4.34l-6.04.65c.13-2.83,1.09-4.99,2.63-4.99Z"/>
+        </svg>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#produkte">Produkte</a></li>
+          <li><a href="#philosophie">Philosophie</a></li>
+          <li><a href="https://www.instagram.com/hartraet/" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-left">
+        <div class="cartouche reveal">
+          <div class="cartouche-border" aria-hidden="true">
+            <svg viewBox="0 0 540 360" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect x="8" y="8" width="524" height="344" rx="4" stroke="#C9A96E" stroke-width="0.5" opacity="0.3"/>
+              <rect x="18" y="18" width="504" height="324" rx="2" stroke="#C9A96E" stroke-width="0.8" opacity="0.45"/>
+              <path d="M18 60 C18 36, 36 18, 60 18" stroke="#C9A96E" stroke-width="1.2" fill="none" opacity="0.6"/>
+              <path d="M18 70 Q8 40, 40 18" stroke="#C9A96E" stroke-width="0.6" fill="none" opacity="0.35"/>
+              <circle cx="22" cy="22" r="3" fill="none" stroke="#C9A96E" stroke-width="0.6" opacity="0.5"/>
+              <path d="M522 60 C522 36, 504 18, 480 18" stroke="#C9A96E" stroke-width="1.2" fill="none" opacity="0.6"/>
+              <path d="M522 70 Q532 40, 500 18" stroke="#C9A96E" stroke-width="0.6" fill="none" opacity="0.35"/>
+              <circle cx="518" cy="22" r="3" fill="none" stroke="#C9A96E" stroke-width="0.6" opacity="0.5"/>
+              <path d="M18 300 C18 324, 36 342, 60 342" stroke="#C9A96E" stroke-width="1.2" fill="none" opacity="0.6"/>
+              <path d="M18 290 Q8 320, 40 342" stroke="#C9A96E" stroke-width="0.6" fill="none" opacity="0.35"/>
+              <circle cx="22" cy="338" r="3" fill="none" stroke="#C9A96E" stroke-width="0.6" opacity="0.5"/>
+              <path d="M522 300 C522 324, 504 342, 480 342" stroke="#C9A96E" stroke-width="1.2" fill="none" opacity="0.6"/>
+              <path d="M522 290 Q532 320, 500 342" stroke="#C9A96E" stroke-width="0.6" fill="none" opacity="0.35"/>
+              <circle cx="518" cy="338" r="3" fill="none" stroke="#C9A96E" stroke-width="0.6" opacity="0.5"/>
+              <path d="M230 18 Q250 6, 270 18 Q270 8, 270 2 Q270 8, 270 18 Q290 6, 310 18" stroke="#C9A96E" stroke-width="0.7" fill="none" opacity="0.4"/>
+              <circle cx="270" cy="4" r="2" fill="#C9A96E" opacity="0.35"/>
+              <path d="M230 342 Q250 354, 270 342 Q270 352, 270 358 Q270 352, 270 342 Q290 354, 310 342" stroke="#C9A96E" stroke-width="0.7" fill="none" opacity="0.4"/>
+              <circle cx="270" cy="356" r="2" fill="#C9A96E" opacity="0.35"/>
+            </svg>
+          </div>
+          <p class="hero-eyebrow">Shop für Haarpflege &amp; Haarstyling</p>
+          <h1 class="hero-title">Dein Haar,<br>deine Handschrift.</h1>
+          <p class="hero-tagline">Klare Pflege ohne Kompromisse</p>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="medallion reveal reveal-d2">
+          <img class="medallion-img" src="images/hero-desktop.jpg" alt="Hårtræt Haarpflege" loading="eager">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FLOURISH 1 ============ -->
+    <div class="flourish" aria-hidden="true">
+      <svg viewBox="0 0 480 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="240" cy="20" r="4" stroke="#C9A96E" stroke-width="0.8" fill="none"/>
+        <circle cx="240" cy="20" r="1.5" fill="#C9A96E" opacity="0.5"/>
+        <path d="M220 20 Q200 10, 170 20 Q140 30, 110 20 Q90 14, 60 20 Q40 24, 10 20" stroke="#C9A96E" stroke-width="0.6" fill="none"/>
+        <path d="M220 20 Q200 30, 170 20 Q140 10, 110 20 Q90 26, 60 20 Q40 16, 10 20" stroke="#C9A96E" stroke-width="0.4" fill="none" opacity="0.4"/>
+        <path d="M180 14 Q175 8, 168 12" stroke="#C9A96E" stroke-width="0.5" fill="none"/>
+        <path d="M130 26 Q125 32, 118 28" stroke="#C9A96E" stroke-width="0.5" fill="none"/>
+        <circle cx="90" cy="20" r="1.2" fill="#C9A96E" opacity="0.3"/>
+        <path d="M260 20 Q280 10, 310 20 Q340 30, 370 20 Q390 14, 420 20 Q440 24, 470 20" stroke="#C9A96E" stroke-width="0.6" fill="none"/>
+        <path d="M260 20 Q280 30, 310 20 Q340 10, 370 20 Q390 26, 420 20 Q440 16, 470 20" stroke="#C9A96E" stroke-width="0.4" fill="none" opacity="0.4"/>
+        <path d="M300 14 Q305 8, 312 12" stroke="#C9A96E" stroke-width="0.5" fill="none"/>
+        <path d="M350 26 Q355 32, 362 28" stroke="#C9A96E" stroke-width="0.5" fill="none"/>
+        <circle cx="390" cy="20" r="1.2" fill="#C9A96E" opacity="0.3"/>
+        <circle cx="6" cy="20" r="1" fill="#C9A96E" opacity="0.3"/>
+        <circle cx="474" cy="20" r="1" fill="#C9A96E" opacity="0.3"/>
+      </svg>
+    </div>
+
+    <!-- ============ PHILOSOPHIE ============ -->
+    <section class="values" id="philosophie">
+      <span class="orn-corner orn-tl" aria-hidden="true"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 56 L4 20 Q4 4, 20 4 L56 4" stroke="#C9A96E" stroke-width="0.7" fill="none" opacity="0.3"/><path d="M4 40 Q4 12, 12 4" stroke="#C9A96E" stroke-width="0.5" fill="none" opacity="0.2"/><path d="M8 4 Q4 4, 4 8" stroke="#C9A96E" stroke-width="1" fill="none" opacity="0.5"/><circle cx="4" cy="4" r="1.5" fill="#C9A96E" opacity="0.4"/></svg></span>
+      <span class="orn-corner orn-tr" aria-hidden="true"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 56 L4 20 Q4 4, 20 4 L56 4" stroke="#C9A96E" stroke-width="0.7" fill="none" opacity="0.3"/><path d="M4 40 Q4 12, 12 4" stroke="#C9A96E" stroke-width="0.5" fill="none" opacity="0.2"/><path d="M8 4 Q4 4, 4 8" stroke="#C9A96E" stroke-width="1" fill="none" opacity="0.5"/><circle cx="4" cy="4" r="1.5" fill="#C9A96E" opacity="0.4"/></svg></span>
+      <span class="orn-corner orn-bl" aria-hidden="true"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 56 L4 20 Q4 4, 20 4 L56 4" stroke="#C9A96E" stroke-width="0.7" fill="none" opacity="0.3"/><path d="M4 40 Q4 12, 12 4" stroke="#C9A96E" stroke-width="0.5" fill="none" opacity="0.2"/><path d="M8 4 Q4 4, 4 8" stroke="#C9A96E" stroke-width="1" fill="none" opacity="0.5"/><circle cx="4" cy="4" r="1.5" fill="#C9A96E" opacity="0.4"/></svg></span>
+      <span class="orn-corner orn-br" aria-hidden="true"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 56 L4 20 Q4 4, 20 4 L56 4" stroke="#C9A96E" stroke-width="0.7" fill="none" opacity="0.3"/><path d="M4 40 Q4 12, 12 4" stroke="#C9A96E" stroke-width="0.5" fill="none" opacity="0.2"/><path d="M8 4 Q4 4, 4 8" stroke="#C9A96E" stroke-width="1" fill="none" opacity="0.5"/><circle cx="4" cy="4" r="1.5" fill="#C9A96E" opacity="0.4"/></svg></span>
+      <div class="container">
+        <div class="values-header reveal">
+          <span class="section-eyebrow">Philosophie</span>
+          <h2 class="section-title">Was uns antreibt</h2>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal reveal-d1">
+            <div class="value-medallion">
+              <svg class="value-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6 C14 12, 10 18, 18 30 C26 18, 22 12, 18 6Z" stroke="#C9A96E" stroke-width="1" fill="none"/><path d="M11 16 Q18 20, 25 16" stroke="#C9A96E" stroke-width="0.7" fill="none"/><circle cx="18" cy="18" r="2" stroke="#C9A96E" stroke-width="0.5" fill="none"/></svg>
+            </div>
+            <h3 class="value-name">Vegan</h3>
+            <p class="value-desc">Keine tierischen Inhaltsstoffe, nicht an Tieren getestet</p>
+          </div>
+          <div class="value-card reveal reveal-d2">
+            <div class="value-medallion">
+              <svg class="value-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 28 L18 8 L26 28 Z" stroke="#C9A96E" stroke-width="1" fill="none"/><path d="M14 24 L18 14 L22 24" stroke="#C9A96E" stroke-width="0.7" fill="none"/><circle cx="18" cy="21" r="2.5" stroke="#C9A96E" stroke-width="0.5" fill="none"/></svg>
+            </div>
+            <h3 class="value-name">Recycelt</h3>
+            <p class="value-desc">Verpackung 100% recycelt</p>
+          </div>
+          <div class="value-card reveal reveal-d3">
+            <div class="value-medallion">
+              <svg class="value-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="20" height="20" rx="2" stroke="#C9A96E" stroke-width="1" fill="none"/><line x1="13" y1="18" x2="23" y2="18" stroke="#C9A96E" stroke-width="0.8"/></svg>
+            </div>
+            <h3 class="value-name">Kompromisslos</h3>
+            <p class="value-desc">Ohne Silikone, ohne Sodium Laureth Sulfate</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FLOURISH 2 ============ -->
+    <div class="flourish" aria-hidden="true">
+      <svg viewBox="0 0 480 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M232 20 L240 12 L248 20 L240 28 Z" stroke="#C9A96E" stroke-width="0.7" fill="none"/>
+        <circle cx="240" cy="20" r="1.2" fill="#C9A96E" opacity="0.5"/>
+        <line x1="10" y1="20" x2="228" y2="20" stroke="#C9A96E" stroke-width="0.3" opacity="0.2"/>
+        <path d="M200 20 Q190 14, 180 20 Q170 26, 160 20" stroke="#C9A96E" stroke-width="0.5" fill="none" opacity="0.4"/>
+        <circle cx="140" cy="20" r="1" fill="#C9A96E" opacity="0.25"/>
+        <circle cx="100" cy="20" r="0.8" fill="#C9A96E" opacity="0.15"/>
+        <line x1="252" y1="20" x2="470" y2="20" stroke="#C9A96E" stroke-width="0.3" opacity="0.2"/>
+        <path d="M280 20 Q290 14, 300 20 Q310 26, 320 20" stroke="#C9A96E" stroke-width="0.5" fill="none" opacity="0.4"/>
+        <circle cx="340" cy="20" r="1" fill="#C9A96E" opacity="0.25"/>
+        <circle cx="380" cy="20" r="0.8" fill="#C9A96E" opacity="0.15"/>
+      </svg>
+    </div>
+
+    <!-- ============ PRODUKTE ============ -->
+    <section class="products" id="produkte">
+      <div class="container">
+        <div class="products-header reveal">
+          <span class="section-eyebrow">Kollektion</span>
+          <h2 class="section-title">Unsere Besten</h2>
+        </div>
+        <div class="products-grid">
+          <a href="https://www.hartraet.de/products/feuchtigkeitsshampoo" class="product-card p1 reveal reveal-d1">
+            <div class="product-frame">
+              <img class="product-img" src="images/feuchtigkeit-shampoo-1.jpg" alt="Feuchtigkeit Shampoo" loading="lazy">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Feuchtigkeit Shampoo</h3>
+              <p class="product-price">&euro;19,50</p>
+              <p class="product-desc">Unser Feuchtigkeit Shampoo nährt trockenes, stumpfes Haar mit natürlichen Ölen und Sheabutter – für geschmeidiges, glänzendes Haar.</p>
+            </div>
+          </a>
+          <a href="https://www.hartraet.de/products/farbkraft-pflegespray" class="product-card p2 reveal reveal-d2">
+            <div class="product-frame">
+              <img class="product-img" src="images/farbkraft-spray-1.jpg" alt="Farbkraft Pflegespray" loading="lazy">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Farbkraft Pflegespray</h3>
+              <p class="product-price">&euro;19,50</p>
+              <p class="product-desc">Das Farbkraft Pflegespray schützt coloriertes Haar vor dem Ausbleichen und verleiht intensiven Glanz.</p>
+            </div>
+          </a>
+          <a href="https://www.hartraet.de/products/lockencreme" class="product-card p3 reveal reveal-d3">
+            <div class="product-frame">
+              <img class="product-img" src="images/lockencreme-1.jpg" alt="Lockencreme" loading="lazy">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Lockencreme</h3>
+              <p class="product-price">&euro;16,50</p>
+              <p class="product-desc">Unsere Lockencreme definiert natürliche Locken, spendet Feuchtigkeit und reduziert Frizz – für gepflegte, sprunghafte Locken.</p>
+            </div>
+          </a>
+          <a href="https://www.hartraet.de/products/mattpaste" class="product-card p4 reveal reveal-d4">
+            <div class="product-frame">
+              <img class="product-img" src="images/mattpaste-1.jpg" alt="Mattpaste" loading="lazy">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Mattpaste</h3>
+              <p class="product-price">&euro;12,00</p>
+              <p class="product-desc">Die Mattpaste bietet starken, flexiblen Halt mit mattem Finish – ideal für kurze bis mittellange Haare.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FLOURISH 3 ============ -->
+    <div class="flourish" aria-hidden="true">
+      <svg viewBox="0 0 480 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="240" cy="24" rx="12" ry="8" stroke="#C9A96E" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <ellipse cx="240" cy="24" rx="6" ry="4" stroke="#C9A96E" stroke-width="0.5" fill="none" opacity="0.5"/>
+        <circle cx="240" cy="24" r="1.5" fill="#C9A96E" opacity="0.4"/>
+        <path d="M222 24 C210 18, 195 28, 180 24 C165 20, 155 26, 140 24 C125 22, 115 28, 100 24" stroke="#C9A96E" stroke-width="0.6" fill="none" opacity="0.35"/>
+        <path d="M190 19 Q185 14, 180 18" stroke="#C9A96E" stroke-width="0.4" fill="none" opacity="0.3"/>
+        <path d="M150 28 Q145 33, 140 29" stroke="#C9A96E" stroke-width="0.4" fill="none" opacity="0.3"/>
+        <line x1="10" y1="24" x2="100" y2="24" stroke="#C9A96E" stroke-width="0.25" opacity="0.15"/>
+        <path d="M258 24 C270 18, 285 28, 300 24 C315 20, 325 26, 340 24 C355 22, 365 28, 380 24" stroke="#C9A96E" stroke-width="0.6" fill="none" opacity="0.35"/>
+        <path d="M290 19 Q295 14, 300 18" stroke="#C9A96E" stroke-width="0.4" fill="none" opacity="0.3"/>
+        <path d="M330 28 Q335 33, 340 29" stroke="#C9A96E" stroke-width="0.4" fill="none" opacity="0.3"/>
+        <line x1="380" y1="24" x2="470" y2="24" stroke="#C9A96E" stroke-width="0.25" opacity="0.15"/>
+      </svg>
+    </div>
+
+    <!-- ============ RITUAL ============ -->
+    <section class="ritual" id="ritual">
+      <span class="orn-corner orn-tl" aria-hidden="true"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 56 L4 20 Q4 4, 20 4 L56 4" stroke="#C9A96E" stroke-width="0.7" fill="none" opacity="0.3"/><path d="M8 4 Q4 4, 4 8" stroke="#C9A96E" stroke-width="1" fill="none" opacity="0.5"/><circle cx="4" cy="4" r="1.5" fill="#C9A96E" opacity="0.4"/></svg></span>
+      <span class="orn-corner orn-tr" aria-hidden="true"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 56 L4 20 Q4 4, 20 4 L56 4" stroke="#C9A96E" stroke-width="0.7" fill="none" opacity="0.3"/><path d="M8 4 Q4 4, 4 8" stroke="#C9A96E" stroke-width="1" fill="none" opacity="0.5"/><circle cx="4" cy="4" r="1.5" fill="#C9A96E" opacity="0.4"/></svg></span>
+      <span class="orn-corner orn-bl" aria-hidden="true"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 56 L4 20 Q4 4, 20 4 L56 4" stroke="#C9A96E" stroke-width="0.7" fill="none" opacity="0.3"/><path d="M8 4 Q4 4, 4 8" stroke="#C9A96E" stroke-width="1" fill="none" opacity="0.5"/><circle cx="4" cy="4" r="1.5" fill="#C9A96E" opacity="0.4"/></svg></span>
+      <span class="orn-corner orn-br" aria-hidden="true"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 56 L4 20 Q4 4, 20 4 L56 4" stroke="#C9A96E" stroke-width="0.7" fill="none" opacity="0.3"/><path d="M8 4 Q4 4, 4 8" stroke="#C9A96E" stroke-width="1" fill="none" opacity="0.5"/><circle cx="4" cy="4" r="1.5" fill="#C9A96E" opacity="0.4"/></svg></span>
+      <div class="container">
+        <div class="ritual-inner reveal">
+          <div class="ritual-cartouche">
+            <div class="ritual-cartouche-frame" aria-hidden="true">
+              <svg viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <rect x="12" y="12" width="776" height="576" rx="3" stroke="#C9A96E" stroke-width="0.4" opacity="0.2"/>
+                <rect x="24" y="24" width="752" height="552" rx="2" stroke="#C9A96E" stroke-width="0.7" opacity="0.3"/>
+                <path d="M24 72 C24 44, 44 24, 72 24" stroke="#C9A96E" stroke-width="1" fill="none" opacity="0.45"/>
+                <path d="M776 72 C776 44, 756 24, 728 24" stroke="#C9A96E" stroke-width="1" fill="none" opacity="0.45"/>
+                <path d="M24 528 C24 556, 44 576, 72 576" stroke="#C9A96E" stroke-width="1" fill="none" opacity="0.45"/>
+                <path d="M776 528 C776 556, 756 576, 728 576" stroke="#C9A96E" stroke-width="1" fill="none" opacity="0.45"/>
+                <circle cx="28" cy="28" r="2" fill="#C9A96E" opacity="0.3"/>
+                <circle cx="772" cy="28" r="2" fill="#C9A96E" opacity="0.3"/>
+                <circle cx="28" cy="572" r="2" fill="#C9A96E" opacity="0.3"/>
+                <circle cx="772" cy="572" r="2" fill="#C9A96E" opacity="0.3"/>
+                <path d="M370 24 Q390 12, 400 24 Q410 12, 430 24" stroke="#C9A96E" stroke-width="0.6" fill="none" opacity="0.35"/>
+                <circle cx="400" cy="14" r="1.5" fill="#C9A96E" opacity="0.3"/>
+                <path d="M370 576 Q390 588, 400 576 Q410 588, 430 576" stroke="#C9A96E" stroke-width="0.6" fill="none" opacity="0.35"/>
+                <circle cx="400" cy="586" r="1.5" fill="#C9A96E" opacity="0.3"/>
+              </svg>
+            </div>
+            <blockquote class="ritual-quote">
+              „Hårtræt", Dänisch für „haarmüde". Ein Wort für den Moment, in dem man genug hat, vom Zuviel, vom Überladen, vom Immer-Mehr. Hårtræt steht für klare Pflege ohne Kompromisse aus Deutschland.
+            </blockquote>
+            <div class="ritual-founder">
+              <p class="ritual-founder-name">Christian Bernhardt</p>
+              <p class="ritual-founder-role">Gründer &amp; Friseurmeister</p>
+            </div>
+            <p class="ritual-bio">Erfahrener Friseurmeister, Betriebswirt und Intercoiffure spezialisierte sich als Colorist und Pflegeexperte. Neben seiner Tätigkeit in seinem eigenen Salon, engagiert er sich als Lehrlingswart und als Vorstandsmitglied der Friseurinnung Süd-Pfalz Deutsche Weinstraße. Seit 2018 betreibt er erfolgreich seinen eigenen Salon und begeistert seine Kunden mit fachlichem Know-how auf internationalem Niveau.</p>
+            <a href="https://www.instagram.com/hartraet/" target="_blank" rel="noopener" class="cta-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+              Werde Teil von uns
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="footer-logo" aria-label="Hårtræt">
+          <svg viewBox="0 0 180.46 83.46" xmlns="http://www.w3.org/2000/svg" fill="#F0EBE3">
+            <path d="M25.93,46.54h-7.44v-.56c1.32-.44,1.6-1.64,1.6-4.52v-17.84c0-2.88-.28-4.08-1.6-4.52v-.56h7.44v.56c-1.32.44-1.6,1.64-1.6,4.52v7.72h13.92v-7.72c0-2.88-.28-4.08-1.6-4.52v-.56h7.44v.56c-1.32.44-1.6,1.64-1.6,4.52v17.84c0,2.88.28,4.08,1.6,4.52v.56h-7.44v-.56c1.32-.44,1.6-1.64,1.6-4.52v-9.4h-13.92v9.4c0,2.88.28,4.08,1.6,4.52v.56Z"/>
+          </svg>
+        </a>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/hartraet/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+          </a>
+        </div>
+        <ul class="footer-links">
+          <li><a href="/policies/privacy-policy">Datenschutzerklärung</a></li>
+          <li><a href="/policies/refund-policy">Widerrufsrecht</a></li>
+          <li><a href="/policies/terms-of-service">AGB</a></li>
+          <li><a href="/policies/contact-information">Kontaktinformationen</a></li>
+          <li><a href="/policies/legal-notice">Impressum</a></li>
+          <li><a href="/policies/shipping-policy">Versand</a></li>
+        </ul>
+        <p class="footer-copy">&copy; 2026 Hårtræt</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('siteHeader');
+    function updateHeader() {
+      if (window.scrollY > 60) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    updateHeader();
+
+    // IntersectionObserver reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+  </script>
+</body>
+</html>

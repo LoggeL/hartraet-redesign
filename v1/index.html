@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H&aring;rtr&aelig;t &ndash; dein Shop f&uuml;r Haarpflege &amp; Haarstyling</title>
+  <meta name="description" content="Dein Haar, deine Handschrift. H&aring;rtr&aelig;t steht f&uuml;r klare Pflege ohne Kompromisse aus Deutschland.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li class="nav-dropdown">
+          <a href="pflege.html">Pflege</a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="pflege.html#feuchtigkeit">Feuchtigkeit</a></li>
+            <li><a href="pflege.html#farbkraft">Farbkraft</a></li>
+            <li><a href="pflege.html#naehrend">N&auml;hrend</a></li>
+            <li><a href="pflege.html#volumen">Volumen</a></li>
+          </ul>
+        </li>
+        <li><a href="styling.html">Styling</a></li>
+      </ul>
+
+      <a href="index.html" class="nav-logo" aria-label="H&aring;rtr&aelig;t Home">
+        <img src="images/logo.svg" alt="H&aring;rtr&aelig;t">
+      </a>
+
+      <ul class="nav-links" id="navLinksRight">
+        <li><a href="uber-uns.html">&Uuml;ber uns</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <img src="images/hero-main.jpg" alt="H&aring;rtr&aelig;t Haarpflege" class="hero-bg" id="heroBg" loading="eager">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-subtitle fade-in">Shop f&uuml;r Haarpflege &amp; Haarstyling</p>
+      <h1 class="hero-title fade-in fade-in-delay-1">"Dein Haar, deine Handschrift."</h1>
+      <div class="hero-line fade-in fade-in-delay-2"></div>
+    </div>
+    <div class="hero-scroll">
+      <span class="hero-scroll-text">Entdecken</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============ VALUES STRIP ============ -->
+  <section class="values" id="values">
+    <div class="container">
+      <div class="values-grid">
+        <div class="value-item fade-in">
+          <svg class="value-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="12" stroke="#C5A880" stroke-width="0.8"/>
+            <path d="M20 12 C16 16, 14 20, 20 28 C26 20, 24 16, 20 12Z" stroke="#C5A880" stroke-width="0.8" fill="none"/>
+            <path d="M14 18 C18 20, 22 20, 26 18" stroke="#C5A880" stroke-width="0.6" fill="none"/>
+          </svg>
+          <h3 class="value-title">Vegan</h3>
+          <p class="value-desc">Keine tierischen Inhaltsstoffe, nicht an Tieren getestet</p>
+        </div>
+        <div class="value-item fade-in fade-in-delay-1">
+          <svg class="value-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 28 L20 12 L28 28 Z" stroke="#C5A880" stroke-width="0.8" fill="none"/>
+            <path d="M16 24 L20 16 L24 24" stroke="#C5A880" stroke-width="0.6" fill="none"/>
+            <circle cx="20" cy="22" r="2" stroke="#C5A880" stroke-width="0.6" fill="none"/>
+          </svg>
+          <h3 class="value-title">Recycelt</h3>
+          <p class="value-desc">Verpackung 100% recycelt</p>
+        </div>
+        <div class="value-item fade-in fade-in-delay-2">
+          <svg class="value-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="12" y="12" width="16" height="16" rx="2" stroke="#C5A880" stroke-width="0.8" fill="none"/>
+            <line x1="16" y1="20" x2="24" y2="20" stroke="#C5A880" stroke-width="0.8"/>
+            <line x1="20" y1="16" x2="20" y2="24" stroke="#C5A880" stroke-width="0.8"/>
+          </svg>
+          <h3 class="value-title">Kompromisslos</h3>
+          <p class="value-desc">Ohne Silikone, ohne Sodium Laureth Sulfate</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCTS ============ -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-eyebrow">Kollektion</span>
+        <h2 class="section-title">Unsere Besten</h2>
+        <div class="ornament">
+          <span class="ornament-symbol">&#10041;</span>
+        </div>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card fade-in">
+          <div class="product-image-wrap">
+            <img src="images/feuchtigkeit-shampoo.jpg" alt="Feuchtigkeit Shampoo" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Feuchtigkeit Shampoo</h3>
+            <p class="product-price">19,50</p>
+          </div>
+        </div>
+
+        <div class="product-card fade-in fade-in-delay-1">
+          <div class="product-image-wrap">
+            <img src="images/farbkraft-spray.jpg" alt="Farbkraft Pflegespray" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Farbkraft Pflegespray</h3>
+            <p class="product-price">19,50</p>
+          </div>
+        </div>
+
+        <div class="product-card fade-in fade-in-delay-2">
+          <div class="product-image-wrap">
+            <img src="images/lockencreme.jpg" alt="Lockencreme" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Lockencreme</h3>
+            <p class="product-price">16,50</p>
+          </div>
+        </div>
+
+        <div class="product-card fade-in fade-in-delay-3">
+          <div class="product-image-wrap">
+            <img src="images/mattpaste.jpg" alt="Mattpaste" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Mattpaste</h3>
+            <p class="product-price">12,00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image-wrap fade-in">
+          <img src="images/founder.jpg" alt="Christian Bernhardt &ndash; Gr&uuml;nder von H&aring;rtr&aelig;t" loading="lazy">
+        </div>
+        <div class="about-content fade-in fade-in-delay-1">
+          <blockquote class="about-quote">
+            &bdquo;H&aring;rtr&aelig;t&ldquo;, D&auml;nisch f&uuml;r &bdquo;haarm&uuml;de&ldquo;. Ein Wort f&uuml;r den Moment, in dem man genug hat, vom Zuviel, vom &Uuml;berladen, vom Immer-Mehr. H&aring;rtr&aelig;t steht f&uuml;r klare Pflege ohne Kompromisse aus Deutschland.
+          </blockquote>
+          <h3 class="about-founder-name">Christian Bernhardt</h3>
+          <p class="about-founder-role">Gr&uuml;nder &amp; Friseurmeister</p>
+          <p class="about-text">
+            Erfahrener Friseurmeister, Betriebswirt und Intercoiffure spezialisierte sich als Colorist und Pflegeexperte. Neben seiner T&auml;tigkeit in seinem eigenen Salon, engagiert er sich als Lehrlingswart und als Vorstandsmitglied der Friseurinnung S&uuml;d-Pfalz Deutsche Weinstra&szlig;e. Seit 2018 betreibt er erfolgreich seinen eigenen Salon und begeistert seine Kunden mit fachlichem Know-how auf internationalem Niveau.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BRAND STORY ============ -->
+  <section class="brand-story">
+    <div class="container">
+      <div class="brand-story-content fade-in">
+        <span class="section-eyebrow" style="color: var(--color-gold-light);">Unsere Philosophie</span>
+        <div class="ornament" style="margin-top: 20px;">
+          <span class="ornament-symbol">&#10041;</span>
+        </div>
+        <h2 class="brand-story-title">
+          Dein Haar verdient mehr als&nbsp;Kompromisse
+        </h2>
+        <p class="brand-story-text">
+          H&aring;rtr&aelig;t steht f&uuml;r eine neue Art der Haarpflege: klar, ehrlich, ohne &Uuml;berfl&uuml;ssiges. Unsere Produkte sind vegan, frei von Silikonen und Sodium Laureth Sulfaten, verpackt in 100% recycelten Materialien. Hergestellt in Deutschland mit dem Anspruch, dass weniger mehr sein kann &mdash; wenn die Qualit&auml;t stimmt.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSTAGRAM CTA ============ -->
+  <section class="instagram" id="instagram">
+    <div class="container fade-in">
+      <span class="section-eyebrow">Community</span>
+      <h2 class="instagram-title">Werde Teil von uns</h2>
+      <div class="ornament">
+        <span class="ornament-symbol">&#10041;</span>
+      </div>
+      <p class="instagram-text">
+        Folge uns auf Instagram f&uuml;r Inspiration, Pflegetipps und einen Blick hinter die Kulissen.
+      </p>
+      <a href="https://www.instagram.com/hartraet/" target="_blank" rel="noopener" class="btn-elegant">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="5"/>
+          <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+        </svg>
+        Folge uns bei Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="footer-logo" aria-label="H&aring;rtr&aelig;t">
+          <img src="images/logo.svg" alt="H&aring;rtr&aelig;t">
+        </a>
+
+        <div class="footer-social">
+          <a href="https://www.instagram.com/hartraet/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="5"/>
+              <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/shopify" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="faqs.html">FAQs</a></li>
+          <li><a href="/policies/privacy-policy">Datenschutzerkl&auml;rung</a></li>
+          <li><a href="/policies/refund-policy">Widerrufsrecht</a></li>
+          <li><a href="/policies/terms-of-service">AGB</a></li>
+          <li><a href="/policies/contact-information">Kontaktinformationen</a></li>
+          <li><a href="/policies/legal-notice">Impressum</a></li>
+          <li><a href="/policies/shipping-policy">Versand</a></li>
+        </ul>
+
+        <p class="footer-copyright">&copy; 2026 H&aring;rtr&aelig;t</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+    // ---- Navbar scroll effect ----
+    const nav = document.getElementById('nav');
+    const hero = document.getElementById('hero');
+
+    function updateNav() {
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    // ---- Mobile nav toggle ----
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    const navLinksRight = document.getElementById('navLinksRight');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      navLinksRight.classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navLinksRight.classList.remove('open');
+      });
+    });
+
+    // ---- Parallax hero ----
+    const heroBg = document.getElementById('heroBg');
+    let ticking = false;
+
+    function updateParallax() {
+      const scrolled = window.scrollY;
+      const heroHeight = hero.offsetHeight;
+      if (scrolled < heroHeight) {
+        heroBg.style.transform = `translateY(${scrolled * 0.35}px)`;
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // ---- Intersection Observer for fade-in animations ----
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -60px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
